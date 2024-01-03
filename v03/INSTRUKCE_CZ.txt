@@ -1,0 +1,28 @@
+# CZ #
+
+! VŠECHNY DETEKTORY MUSÍ BÝT PŘIPOJENÉ DO FLASH SERVISU PŘED LOADOVÁNÍM !
+
+Skript pouze obsluhuje okna na aktivní ploše.
+
+# Instrukce #
+
+A) Příprava
+
+1. Připoj detektory do ECOM Flash Service okna přes tlačítko Instances>Operate>Connect>OK
+a vyčkej na připojení všech přístrojů
+2. Zobraz potřebný počet detektorů (instancí Flash Service) přes Instances>Organize>X per desktop>Organize
+3. Okno "Operate instances..." zavři stiskem Cancel
+4. Okno "Organize instances..." zavři stiskem Cancel
+5. Pozavírej vyskakovací dialogy (Upozornění BUCHI apod.) 
+
+B) Provedení
+
+1. Spusť nejnovější ostrou verzi souboru "AutoFlash.py" (v03)
+2. Do prvního řádku vepiš číslo instance, ve které má skript začít provádět operace
+(typicky 1 = první okno na první ploše, jinak najdeš číslo instance v levém horním rohu okna ECOM Flash Service)
+3. Vyber model (typ a variantu)
+4. Vepiš první (nejnižší) sériové číslo zakázky (skript bude pokračovat v číselné řadě)
+5. Zadej počet stejných přístrojů, které má skript obsloužit
+6. Zaškrtni, zda-li chceš provést pouze defaultní operace (Model, Defaults, SN, Gain, Main Fuse)
+nebo i zapnout lampy a otevřít dialog Šumu a Driftu
+7. Stiskni tlačítko GO! a nesahej na to :)      
