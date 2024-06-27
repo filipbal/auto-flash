@@ -1,0 +1,14 @@
+02/02/2024
+- MODEL writing ERROR !!!
+- implement parallel execution
+- upgrade the loader including organization of instances and connection of devices
+27/10/2023
+- implement a CSV loader for model types and variants
+24/10/2023
+- organize windows at the end by click_input() Instances>Organize>input(QUANTITY)>Organize
+20/10/2023
+- fix duplicate type variable
+19/10/2023
+- allow user to connect device from the very start while checking for FW version on specific COM?
+- organize windows at the end
+- optimize click_input() wait times etc.

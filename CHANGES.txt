@@ -1,4 +1,8 @@
 v0.3
+27/06/2024
+- rewritten README
+01/03/2024
+- fixed BABY variants (missing TG lamp)
 03/01/2024
 - translated instructions to English
 07/11/2023
