@@ -6,7 +6,7 @@ import time
 
 # Define name and version
 NAME_AUTOFLASH = 'AutoFlash'
-VERSION_AUTOFLASH = '0.3.2'
+VERSION_AUTOFLASH = '0.3.3'
 
 class AutomateFlashService(QWidget):
     def __init__(self):
@@ -316,8 +316,14 @@ class AutomateFlashService(QWidget):
                     print("Lamp is already ON. No action required.")
                     time.sleep(1)
 
+def print_version():
+    print(f"{NAME_AUTOFLASH} v{VERSION_AUTOFLASH}")
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == '--version':
+        print_version()
+        sys.exit(0)
+    
     app = QApplication(sys.argv)
     window = AutomateFlashService()
     window.show()
