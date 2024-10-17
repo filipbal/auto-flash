@@ -4,3 +4,5 @@
 *.exe
 # Virtual environment 
 venv312
+# Local build
+local_build.bat
