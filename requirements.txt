@@ -1,26 +1,23 @@
-# Specifikace verze Pythonu
-python_version=="3.12.*"
-
-# COM (Component Object Model) rozhrani pro Python
+# COM (Component Object Model) interface for Python
 comtypes==1.4.7
 
-# GUI framework pro Python
+# GUI framework for Python
 PyQt5==5.15.11
 
-# Qt5 knihovny pro PyQt5
+# Qt5 libraries for PyQt5
 PyQt5-Qt5==5.15.2
 
-# SIP rozsireni pro PyQt5 (pro propojeni Python a C++)
+# SIP extension for PyQt5 (Python and C++)
 PyQt5_sip==12.15.0
 
-# Pristup k Windows API z Pythonu
+# Access to Windows API from Python
 pywin32==308
 
-# Automatizace GUI pro Windows aplikace
+# GUI Automation for Windows applications
 pywinauto==0.6.8
 
-# Knihovna pro kompatibilitu mezi Python 2 a 3 (casto vyzadovana jinymi balicky)
+# Library for compatibility between Python 2 and 3 (often required by other packages)
 six==1.16.0
 
-# Nastroj pro vytvareni spustitelnych souboru
+# Tool for making executables
 pyinstaller==6.3.0
