@@ -1,0 +1,4 @@
+# PyInstaller
+/build/
+/dist/
+*.exe
