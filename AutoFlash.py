@@ -4,8 +4,9 @@ from pywinauto import Application
 import pywinauto.keyboard as keyboard
 import time
 
-# Define version
-VERSION_AUTOFLASH = '0.3.1'
+# Define name and version
+NAME_AUTOFLASH = 'AutoFlash'
+VERSION_AUTOFLASH = '0.3.2'
 
 class AutomateFlashService(QWidget):
     def __init__(self):
@@ -80,7 +81,7 @@ class AutomateFlashService(QWidget):
         self.model_type_select.currentTextChanged.connect(self.update_variant_options)
 
         # Set window properties
-        self.setWindowTitle('Automate Flash Service v' + VERSION_AUTOFLASH)
+        self.setWindowTitle(NAME_AUTOFLASH + ' v' + VERSION_AUTOFLASH)
         self.setGeometry(100, 100, 400, 200)
 
     # Update list of variants based on selected type
