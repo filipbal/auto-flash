@@ -1,4 +1,6 @@
 # PyInstaller
-/build/
-/dist/
+*/build/
+*/dist/
 *.exe
+
+venv312
