@@ -1,6 +1,6 @@
 # PyInstaller
-*/build/
-*/dist/
+/build/
+/dist/
 *.exe
 # Virtual environment 
 venv312
