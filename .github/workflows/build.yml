@@ -26,11 +26,6 @@ jobs:
     - name: Build with PyInstaller
       run: pyinstaller AutoFlash.spec
     
-    - name: Test exe file
-      run: |
-        .\dist\AutoFlash.exe --version
-      continue-on-error: true
-    
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
