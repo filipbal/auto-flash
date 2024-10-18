@@ -11,72 +11,27 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
       - name: Download artifact
-        uses: actions/github-script@v6
+        uses: actions/download-artifact@v3
         with:
-          script: |
-            const fs = require('fs');
-            
-            // Získání ID posledního úspěšného běhu "Build AutoFlash" workflow
-            const workflowRuns = await github.rest.actions.listWorkflowRuns({
-              owner: context.repo.owner,
-              repo: context.repo.name,
-              workflow_id: 'build.yml',
-              status: 'success',
-              per_page: 1
-            });
-            
-            if (workflowRuns.data.workflow_runs.length === 0) {
-              core.setFailed('No successful "Build AutoFlash" workflow run found');
-              return;
-            }
-            
-            const runId = workflowRuns.data.workflow_runs[0].id;
-            console.log(`Latest successful "Build AutoFlash" run ID: ${runId}`);
-            
-            // Stažení artefaktu z tohoto běhu
-            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
-              owner: context.repo.owner,
-              repo: context.repo.name,
-              run_id: runId,
-            });
-            
-            const matchArtifact = artifacts.data.artifacts.find((artifact) => {
-              return artifact.name == "AutoFlash"
-            });
-            
-            if (!matchArtifact) {
-              core.setFailed('No "AutoFlash" artifact found');
-              return;
-            }
-            
-            const download = await github.rest.actions.downloadArtifact({
-              owner: context.repo.owner,
-              repo: context.repo.name,
-              artifact_id: matchArtifact.id,
-              archive_format: 'zip',
-            });
-            
-            fs.writeFileSync('${{github.workspace}}/AutoFlash.zip', Buffer.from(download.data));
-            console.log('Artifact downloaded successfully');
+          name: AutoFlash
+          path: ./artifact
 
-      - name: Unzip artifact
-        run: unzip AutoFlash.zip
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ./artifact
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
-          path: '.'
+          path: './artifact'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
 
       - name: Output Pages URL
-        run: echo "Artifact is available at ${{ steps.deployment.outputs.page_url }}AutoFlash.exe"
+        run: echo "Artifact is available at ${{ steps.deployment.outputs.page_url }}"
