@@ -18,22 +18,50 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const fs = require('fs');
+            
+            // Získání ID posledního úspěšného běhu "Build AutoFlash" workflow
+            const workflowRuns = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.name,
+              workflow_id: 'build.yml',
+              status: 'success',
+              per_page: 1
+            });
+            
+            if (workflowRuns.data.workflow_runs.length === 0) {
+              core.setFailed('No successful "Build AutoFlash" workflow run found');
+              return;
+            }
+            
+            const runId = workflowRuns.data.workflow_runs[0].id;
+            console.log(`Latest successful "Build AutoFlash" run ID: ${runId}`);
+            
+            // Stažení artefaktu z tohoto běhu
             const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
               owner: context.repo.owner,
               repo: context.repo.name,
-              run_id: ${{ github.event.workflow_run.id }},
+              run_id: runId,
             });
+            
             const matchArtifact = artifacts.data.artifacts.find((artifact) => {
               return artifact.name == "AutoFlash"
             });
+            
+            if (!matchArtifact) {
+              core.setFailed('No "AutoFlash" artifact found');
+              return;
+            }
+            
             const download = await github.rest.actions.downloadArtifact({
               owner: context.repo.owner,
               repo: context.repo.name,
               artifact_id: matchArtifact.id,
               archive_format: 'zip',
             });
-            const fs = require('fs');
+            
             fs.writeFileSync('${{github.workspace}}/AutoFlash.zip', Buffer.from(download.data));
+            console.log('Artifact downloaded successfully');
 
       - name: Unzip artifact
         run: unzip AutoFlash.zip
