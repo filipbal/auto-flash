@@ -1,12 +1,11 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLineEdit, QLabel, QComboBox, QCheckBox
 from pywinauto import Application
-import pywinauto.keyboard as keyboard
 import time
 
 # Define name and version
 NAME_AUTOFLASH = 'AutoFlash'
-VERSION_AUTOFLASH = '0.3.3'
+VERSION_AUTOFLASH = '0.3.4'
 
 class AutomateFlashService(QWidget):
     def __init__(self):
